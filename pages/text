@@ -1,0 +1,62 @@
+{/* round button in the bottom right corner that expands into a pill shaped toolbar when clicked */}
+<div className="absolute bottom-12 right-20 m-4">
+  <button className="bg-gray-200 rounded-full shadow-lg text-2xl p-4 ease-in-out duration-300" // run the toggleTools
+    function when the button is hovered over onMouseEnter={toggleTools} // run the toggleTools function when the button
+    is no longer hovered over onMouseLeave={toggleTools} id="toolbar-toggle" onClick={()=> {
+    const toolbar = document.getElementById("toolbar");
+    document
+    .getElementById("toolbar-toggle")
+    ?.classList.toggle("rotate-45");
+    if (toolbar) {
+    toolbar.classList.toggle("hidden");
+    }
+    }}
+    >
+    {/* svg for plus icon that transforms into cross when clicked*/}
+    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+    </svg>
+  </button>
+</div>
+
+const clearCanvas = () => {
+const canvas = canvasRef.current;
+if (canvas == null) {
+return;
+}
+const context = canvas?.getContext("2d");
+if (context) {
+context.clearRect(0, 0, canvas.width, canvas.height);
+}
+};
+function toggleTools() {
+const btn = document.getElementById("toolbar-toggle");
+["transition-transform", "scale-110"].forEach((cl) =>
+btn?.classList.toggle(cl)
+);
+}
+
+
+
+
+
+
+<div className="w-1/2 bg-gray-200 p-4 hidden">
+  <h1 className="text-2xl font-bold">Draw</h1>
+  <label className="block font-bold mb-2" htmlFor="color-input">
+    Color:
+  </label>
+  <input id="color-input"
+    className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+    type="color" ref={colorInputRef} // <--- here />
+  <label className="block font-bold mt-4 mb-2" htmlFor="stroke-size-input">
+    Stroke Size:
+  </label>
+  <input id="stroke-size-input" ref={strokeSizeInputRef} // <--- here
+    className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+    type="number" min="1" max="10" />
+  {/* a button to clear the board uses onclick to implement clearCanvas method */}
+  <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-4" onClick={clearCanvas}>
+    Clear Board
+  </button>
+</div>
