@@ -48,14 +48,12 @@ const DrawingPage: NextPage = () => {
           // so we need to check if the user is drawing
           // if the user is drawing, we don't need to send the data
           // because the data will be sent when the user stops drawing
-
-          // const data = canvas.toDataURL();
-          console.log("Sending data to server");
-          socket.emit("draw", canvas.toDataURL());
         }
       });
 
       canvas.addEventListener("mouseup", () => {
+        // console.log("Sending data to server");
+        socket.emit("draw", canvas.toDataURL());
         isDrawingRef.current = false;
         // downloadCanvas(canvas);
       });
@@ -102,8 +100,6 @@ const DrawingPage: NextPage = () => {
     socket.on("boardUpdate", (data: any) => {
       // this is the data that we sent from the server
       // we need to draw the data on the canvas
-      console.log("Received data from server");
-      // console.log(`On the client side ${data}`);
 
       const canvas = canvasRef.current;
       if (canvas) {

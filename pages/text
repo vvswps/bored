@@ -40,7 +40,6 @@ btn?.classList.toggle(cl)
 
 
 
-
 <div className="w-1/2 bg-gray-200 p-4 hidden">
   <h1 className="text-2xl font-bold">Draw</h1>
   <label className="block font-bold mb-2" htmlFor="color-input">
